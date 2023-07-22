@@ -13,9 +13,11 @@ services:
       - php-fpm
     networks:
       - ucreate_network
-
+  
   php-fpm:
-    image: php:8.1-fpm # image PHP appropriée
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: php-fpm
     volumes:
       - ./ucreate:/var/www/symfony:rw # Montage du projet Symfony en lecture/écriture
@@ -23,6 +25,7 @@ services:
       - "9000:9000" # Port de l'hôte : Port du conteneur
     networks:
       - ucreate_network
+    command: sh -c "composer install --ignore-platform-reqs && php-fpm"
 
 networks:
   ucreate_network:
