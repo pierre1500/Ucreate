@@ -8,14 +8,14 @@ services:
       - "8080:8080" # Port de l'hôte : Port du conteneur
     volumes:
       - ./ucreate/nginx.conf:/etc/nginx/nginx.conf:ro # Montage du fichier nginx.conf
-      - ./ucreate:/var/www/symfony:ro # Montage de votre projet Symfony en lecture seule
+      - ./ucreate:/var/www/symfony:ro # Montage du projet Symfony en lecture seule
     depends_on:
       - php-fpm
 
   php-fpm:
-    image: php:8.1-fpm # Utilisez l'image PHP appropriée
+    image: php:8.1-fpm # image PHP appropriée
     container_name: ucreate_php
     volumes:
-      - ./ucreate:/var/www/symfony:rw # Montage de votre projet Symfony en lecture/écriture
+      - ./ucreate:/var/www/symfony:rw # Montage du projet Symfony en lecture/écriture
 
-# Vous pouvez également ajouter d'autres services comme une base de données (MySQL, PostgreSQL, etc.) si nécessaire.
+
