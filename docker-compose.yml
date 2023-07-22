@@ -11,11 +11,18 @@ services:
       - ./ucreate:/var/www/symfony:ro # Montage du projet Symfony en lecture seule
     depends_on:
       - php-fpm
+    networks:
+      - ucreate_network
 
   php-fpm:
     image: php:8.1-fpm # image PHP appropriée
-    container_name: ucreate_php
+    container_name: php-fpm
     volumes:
       - ./ucreate:/var/www/symfony:rw # Montage du projet Symfony en lecture/écriture
+    ports:
+      - "9000:9000" # Port de l'hôte : Port du conteneur
+    networks:
+      - ucreate_network
 
-
+networks:
+  ucreate_network:
