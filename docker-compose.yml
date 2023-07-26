@@ -11,6 +11,7 @@ services:
       - ./ucreate:/var/www/symfony:ro # Montage du projet Symfony en lecture seule
     depends_on:
       - php-fpm
+      - db
     networks:
       - ucreate_network
   
@@ -25,7 +26,36 @@ services:
       - "9000:9000" # Port de l'hôte : Port du conteneur
     networks:
       - ucreate_network
-    command: sh -c "composer install --ignore-platform-reqs && php-fpm"
+
+  db:
+    image: mysql:latest
+    container_name: ucreate_db
+    environment:
+      MYSQL_ROOT_PASSWORD: kali
+      MYSQL_DATABASE: ucreate
+      MYSQL_USER: kali
+      MYSQL_PASSWORD: kali
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+        - ucreate_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: ucreate_phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: kali
+    ports:
+      - "8081:80"
+    networks:
+      - ucreate_network
+
+volumes:
+    db_data:
 
 networks:
   ucreate_network:
