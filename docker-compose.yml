@@ -31,7 +31,6 @@ services:
     image: mysql:latest
     container_name: ucreate_db
     environment:
-      MYSQL_ROOT_PASSWORD: kali
       MYSQL_DATABASE: ucreate
       MYSQL_USER: kali
       MYSQL_PASSWORD: kali
