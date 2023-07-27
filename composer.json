@@ -1,5 +1,7 @@
 {
-  "require": {
-    "doctrine/annotations": "^2.0"
-  }
+
+    "require": {
+        "doctrine/annotations": "^2.0",
+        "symfony/form": "^6.3"
+    }
 }

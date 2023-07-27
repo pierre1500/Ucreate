@@ -10,7 +10,6 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -33,12 +32,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'id_user', targetEntity: Domain::class)]
-    private Collection $domains;
+    #[ORM\Column(length: 255)]
+    private ?string $lastname = null;
+
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Project::class)]
+    private Collection $projects;
 
     public function __construct()
     {
-        $this->domains = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,30 +144,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Domain>
-     */
-    public function getDomains(): Collection
+    public function getLastname(): ?string
     {
-        return $this->domains;
+        return $this->lastname;
     }
 
-    public function addDomain(Domain $domain): static
+    public function setLastname(string $lastname): static
     {
-        if (!$this->domains->contains($domain)) {
-            $this->domains->add($domain);
-            $domain->setIdUser($this);
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Project>
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    public function addProject(Project $project): static
+    {
+        if (!$this->projects->contains($project)) {
+            $this->projects->add($project);
+            $project->setUserId($this);
         }
 
         return $this;
     }
 
-    public function removeDomain(Domain $domain): static
+    public function removeProject(Project $project): static
     {
-        if ($this->domains->removeElement($domain)) {
+        if ($this->projects->removeElement($project)) {
             // set the owning side to null (unless already changed)
-            if ($domain->getIdUser() === $this) {
-                $domain->setIdUser(null);
+            if ($project->getUserId() === $this) {
+                $project->setUserId(null);
             }
         }
 
