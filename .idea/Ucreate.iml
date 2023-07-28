@@ -27,6 +27,27 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/property-info" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/service-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/string" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/doctrine/annotations" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/psr/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/deprecation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/event-dispatcher-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/form" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/options-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/polyfill-intl-grapheme" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/polyfill-intl-icu" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/polyfill-intl-normalizer" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/property-access" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/property-info" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/runtime" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/service-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/ucreate/vendor/symfony/string" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
