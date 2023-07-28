@@ -1,0 +1,61 @@
+version: '3.8' # Utilisez la version appropriée de Docker Compose
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: ucreate_nginx
+    ports:
+      - "8080:8080" # Port de l'hôte : Port du conteneur
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # Montage du fichier nginx.conf
+      - ./:/var/www/symfony:ro # Montage du projet Symfony en lecture seule
+    depends_on:
+      - php-fpm
+      - db
+    networks:
+      - ucreate_network
+
+  php-fpm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php-fpm
+    volumes:
+      - ./:/var/www/symfony:rw # Montage du projet Symfony en lecture/écriture
+    ports:
+      - "9000:9000" # Port de l'hôte : Port du conteneur
+    networks:
+      - ucreate_network
+
+  db:
+    image: mysql:latest
+    container_name: ucreate_db
+    environment:
+      MYSQL_ROOT_PASSWORD: kali
+      MYSQL_DATABASE: ucreate
+      MYSQL_USER: kali
+      MYSQL_PASSWORD: kali
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - ucreate_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: ucreate_phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: kali
+    ports:
+      - "8081:80"
+    networks:
+      - ucreate_network
+
+volumes:
+  db_data:
+
+networks:
+  ucreate_network:
