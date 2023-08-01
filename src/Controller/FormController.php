@@ -15,12 +15,4 @@ class FormController extends AbstractController
             'controller_name' => 'FormController',
         ]);
     }
-
-    #[Route('/form/section', name: 'app_form_section')]
-    public function section(): Response
-    {
-        return $this->render("form/section.html.twig", [
-            'controller_name' => 'FormController',
-        ]);
-    }
 }

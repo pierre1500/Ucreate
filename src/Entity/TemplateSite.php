@@ -59,7 +59,7 @@ class TemplateSite
     {
         if (!$this->projects->contains($project)) {
             $this->projects->add($project);
-            $project->setTemplateId($this);
+            $project->setTemplate($this);
         }
 
         return $this;
@@ -69,8 +69,8 @@ class TemplateSite
     {
         if ($this->projects->removeElement($project)) {
             // set the owning side to null (unless already changed)
-            if ($project->getTemplateId() === $this) {
-                $project->setTemplateId(null);
+            if ($project->getTemplate() === $this) {
+                $project->setTemplate(null);
             }
         }
 
@@ -89,7 +89,7 @@ class TemplateSite
     {
         if (!$this->sections->contains($section)) {
             $this->sections->add($section);
-            $section->setTemplateId($this);
+            $section->setTemplate($this);
         }
 
         return $this;
@@ -99,8 +99,8 @@ class TemplateSite
     {
         if ($this->sections->removeElement($section)) {
             // set the owning side to null (unless already changed)
-            if ($section->getTemplateId() === $this) {
-                $section->setTemplateId(null);
+            if ($section->getTemplate() === $this) {
+                $section->setTemplate(null);
             }
         }
 

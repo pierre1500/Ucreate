@@ -21,11 +21,11 @@ class Project
 
     #[ORM\ManyToOne(inversedBy: 'projects')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user_id = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'projects')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?TemplateSite $template_id = null;
+    private ?TemplateSite $template = null;
 
     public function getId(): ?int
     {
@@ -56,26 +56,26 @@ class Project
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?User $user_id): static
+    public function setUser(?User $user): static
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getTemplateId(): ?TemplateSite
+    public function getTemplate(): ?TemplateSite
     {
-        return $this->template_id;
+        return $this->template;
     }
 
-    public function setTemplateId(?TemplateSite $template_id): static
+    public function setTemplate(?TemplateSite $template): static
     {
-        $this->template_id = $template_id;
+        $this->template = $template;
 
         return $this;
     }

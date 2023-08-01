@@ -24,7 +24,7 @@ class Component
 
     #[ORM\ManyToOne(inversedBy: 'components')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Section $section_id = null;
+    private ?Section $section = null;
 
     public function getId(): ?int
     {
@@ -67,14 +67,14 @@ class Component
         return $this;
     }
 
-    public function getSectionId(): ?Section
+    public function getSection(): ?Section
     {
-        return $this->section_id;
+        return $this->section;
     }
 
-    public function setSectionId(?Section $section_id): static
+    public function setSection(?Section $section): static
     {
-        $this->section_id = $section_id;
+        $this->section = $section;
 
         return $this;
     }

@@ -23,7 +23,7 @@ class Section
 
     #[ORM\ManyToOne(inversedBy: 'sections')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?TemplateSite $template_id = null;
+    private ?TemplateSite $template = null;
 
     #[ORM\OneToMany(mappedBy: 'section_id', targetEntity: Component::class)]
     private Collection $components;
@@ -62,14 +62,14 @@ class Section
         return $this;
     }
 
-    public function getTemplateId(): ?TemplateSite
+    public function getTemplate(): ?TemplateSite
     {
-        return $this->template_id;
+        return $this->template;
     }
 
-    public function setTemplateId(?TemplateSite $template_id): static
+    public function setTemplate(?TemplateSite $template): static
     {
-        $this->template_id = $template_id;
+        $this->template = $template;
 
         return $this;
     }
@@ -86,7 +86,7 @@ class Section
     {
         if (!$this->components->contains($component)) {
             $this->components->add($component);
-            $component->setSectionId($this);
+            $component->setSection($this);
         }
 
         return $this;
@@ -96,8 +96,8 @@ class Section
     {
         if ($this->components->removeElement($component)) {
             // set the owning side to null (unless already changed)
-            if ($component->getSectionId() === $this) {
-                $component->setSectionId(null);
+            if ($component->getSection() === $this) {
+                $component->setSection(null);
             }
         }
 
