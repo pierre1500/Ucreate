@@ -23,7 +23,7 @@ services:
     volumes:
       - ./:/var/www/symfony:rw # Montage du projet Symfony en lecture/écriture
     ports:
-      - "9000:9000" # Port de l'hôte : Port du conteneur
+      - "9155:9155" # Port de l'hôte : Port du conteneur
     networks:
       - ucreate_network
 
