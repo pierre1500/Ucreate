@@ -24,6 +24,9 @@ class TemplateSite
     #[ORM\OneToMany(mappedBy: 'template_id', targetEntity: Section::class)]
     private Collection $sections;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
@@ -103,6 +106,18 @@ class TemplateSite
                 $section->setTemplate(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

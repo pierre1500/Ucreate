@@ -5,12 +5,10 @@
 {% block body %}
 <h1>Choix du Template</h1>
     <p>Choisissez le template que vous souhaitez utiliser pour votre site</p>
-    <!-- Show image of the template who was in public/assets/image_site/img.png -->
-    <img src="{{ asset('assets/image_site/img.png') }}" alt="image du template">
-    <p>Template 1</p>
-    <a href="" class="btn btn-primary">Choisir ce template</a>
-    <br>
-    <img src="{{ asset('assets/image_site/img_1.png') }}" alt="image du template">
-    <p>Template 2</p>
-    <a href="" class="btn btn-primary">Choisir ce template</a>
+    {% for template in templates %}
+        <img src="{{ asset('assets/image_site' ~ template.image) }}" alt="image du template">
+        <p>{{ template.name }}</p>
+        <a href="{{ path('app_template', {'id': template.id}) }}">Choisir ce template</a>
+        <br>
+    {% endfor %}
 {% endblock %}

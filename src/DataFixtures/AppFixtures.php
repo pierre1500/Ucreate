@@ -32,6 +32,7 @@ class AppFixtures extends Fixture
 
         $template = new TemplateSite();
         $template->setName('Template 1');
+        $template->setImage('/img.png');
         $manager->persist($template);
 
         $project = new Project();
