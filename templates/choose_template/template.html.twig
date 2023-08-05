@@ -4,4 +4,7 @@
 
 {% block body %}
 
+        <h1>Preview du template</h1>
+        <iframe class="w-100 h-100" src="{{ asset('/templates/templates_site/choose_template/' ~ template.name ~ '/index.html.twig') }}"></iframe>
+
 {% endblock %}

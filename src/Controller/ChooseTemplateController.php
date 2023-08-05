@@ -21,10 +21,13 @@ class ChooseTemplateController extends AbstractController
     }
 
     #[Route('/template/{id}', name: 'app_template')]
-    public function template(TemplateSiteRepository $templateSiteRepository): Response
+    public function preview($id, TemplateSiteRepository $templateSiteRepository): Response
     {
+        $template = $templateSiteRepository->find($id);
         return $this->render('choose_template/template.html.twig', [
             'controller_name' => 'ChooseTemplateController',
+            'template' => $template
         ]);
     }
+
 }
