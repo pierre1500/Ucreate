@@ -1,10 +1,19 @@
-{% extends 'base.html.twig' %}
+<!doctype html>
+<html lang="fr">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/united/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/united/_variables.scss">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <title>Preview</title>
+</head>
+<body style="margin: 0; overflow: hidden; position: relative;">
+<iframe style="width: 100%; height: 100vh;" src="{{ asset('assets/templates_site/' ~ template.name ~ '/index.html') }}"></iframe>
+<a style="position: absolute; right:50px; bottom:70px" href="{{ path('app_form', {'id': template.id}) }}" class="btn btn-success">Modifier ce template</a>
+</body>
+</html>
 
-{% block title %}Template{% endblock %}
 
-{% block body %}
-
-        <h1>Preview du template</h1>
-        <iframe class="w-100 h-100" src="{{ asset('/templates/templates_site/choose_template/' ~ template.name ~ '/index.html.twig') }}"></iframe>
-
-{% endblock %}
