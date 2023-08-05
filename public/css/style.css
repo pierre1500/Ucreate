@@ -1,8 +1,4 @@
 body{
-    background-color: white;
-    color: black;
-}
-
-.navbar-border{
-    border-right: 1px solid #ffffff;
+    background-color: black;
+    color: white;
 }
