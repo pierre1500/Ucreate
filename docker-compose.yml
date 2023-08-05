@@ -1,14 +1,14 @@
-version: '3.8' # Utilisez la version appropriée de Docker Compose
+version: '3.8'
 
 services:
   nginx:
     image: nginx:latest
     container_name: ucreate_nginx
     ports:
-      - "8080:8080" # Port de l'hôte : Port du conteneur
+      - "8080:8080"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro # Montage du fichier nginx.conf
-      - ./:/var/www/symfony:ro # Montage du projet Symfony en lecture seule
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./:/var/www/symfony:ro
     depends_on:
       - php-fpm
       - db
@@ -21,9 +21,9 @@ services:
       dockerfile: Dockerfile
     container_name: php-fpm
     volumes:
-      - ./:/var/www/symfony:rw # Montage du projet Symfony en lecture/écriture
+      - ./:/var/www/symfony:rw
     ports:
-      - "9155:9155" # Port de l'hôte : Port du conteneur
+      - "9155:9155"
     networks:
       - ucreate_network
 
