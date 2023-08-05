@@ -47,4 +47,11 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
+
+
+    #[Route('/moncompte', name: 'app_moncompte')]
+    public function moncompte(): Response
+    {
+        return $this->render('registration/myacccount.html.twig');
+    }
 }

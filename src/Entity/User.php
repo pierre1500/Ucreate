@@ -39,7 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $projects;
 
     #[ORM\Column(length: 255)]
-    private ?string $role = null;
+    private ?string $role = "ROLE_USER";
 
     public function __construct()
     {
