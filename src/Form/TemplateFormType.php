@@ -102,7 +102,7 @@ class TemplateFormType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('Copiright', TextType::class, [
+            ->add('Copyright', TextType::class, [
                 'label' => 'Copiright',
                 'attr' => [
                     'class' => 'form-control'
@@ -114,7 +114,7 @@ class TemplateFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+
         ]);
     }
 }

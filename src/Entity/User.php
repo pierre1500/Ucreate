@@ -39,7 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $projects;
 
     #[ORM\Column(length: 255)]
-    private ?string $role = "ROLE_USER";
+    private array $roles = [];
 
     public function __construct()
     {
@@ -176,17 +176,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        return [];
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
-    public function getRole(): ?string
+    public function setRoles(array $roles): self
     {
-        return $this->role;
-    }
-
-    public function setRole(string $role): static
-    {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
     }

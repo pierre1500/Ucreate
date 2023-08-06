@@ -34,7 +34,7 @@ class AppFixtures extends Fixture
         $template->setName('Template1');
         $template->setImage('/img.png');
         $manager->persist($template);
-
+    /*
         $project = new Project();
         $project->setDomain('Domain du projet n°1');
         $project->setState('Working');
@@ -89,14 +89,14 @@ class AppFixtures extends Fixture
         $manager->persist($component3);
 
         $component_2 = new Component();
-        $component_2->setReference('Titre');
+        $component_2->setReference('Titre0');
         $component_2->setType('text');
         $component_2->setValue('Titre');
         $component_2->setSection($section2);
         $manager->persist($component_2);
 
         $component1_2 = new Component();
-        $component1_2->setReference('Sous-titre');
+        $component1_2->setReference('Sous-titre0');
         $component1_2->setType('text');
         $component1_2->setValue('Sous-titre');
         $component1_2->setSection($section2);
@@ -157,8 +157,9 @@ class AppFixtures extends Fixture
         $component_3->setValue('Copiright');
         $component_3->setSection($section3);
         $manager->persist($component_3);
-
-
+    */
         $manager->flush();
+
     }
+
 }
