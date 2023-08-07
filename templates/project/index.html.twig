@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProjectController!{% endblock %}
+
+{% block body %}
+    <h1>Mes projets</h1>
+    {% for project in projects %}
+        <label for="domain"></label>
+        <input id="domain" type="text">
+        <p>{{ project.state }}</p>
+        <br>
+        <a href="{{ path("app_project_show", {'id': project.id}) }}" class="btn btn-success">Voir</a>
+    {% endfor %}
+{% endblock %}

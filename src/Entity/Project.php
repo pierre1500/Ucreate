@@ -27,6 +27,9 @@ class Project
     #[ORM\JoinColumn(nullable: false)]
     private ?TemplateSite $template = null;
 
+    #[ORM\OneToOne(inversedBy: 'project', cascade: ['persist', 'remove'])]
+    private ?TemplateUser $templateUser = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,6 +79,18 @@ class Project
     public function setTemplate(?TemplateSite $template): static
     {
         $this->template = $template;
+
+        return $this;
+    }
+
+    public function getTemplateUser(): ?TemplateUser
+    {
+        return $this->templateUser;
+    }
+
+    public function setTemplateUser(?TemplateUser $templateUser): static
+    {
+        $this->templateUser = $templateUser;
 
         return $this;
     }

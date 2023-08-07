@@ -27,10 +27,14 @@ class TemplateSite
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\OneToMany(mappedBy: 'template', targetEntity: TemplateUser::class)]
+    private Collection $templateUsers;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
         $this->sections = new ArrayCollection();
+        $this->templateUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -118,6 +122,36 @@ class TemplateSite
     public function setImage(string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TemplateUser>
+     */
+    public function getTemplateUsers(): Collection
+    {
+        return $this->templateUsers;
+    }
+
+    public function addTemplateUser(TemplateUser $templateUser): static
+    {
+        if (!$this->templateUsers->contains($templateUser)) {
+            $this->templateUsers->add($templateUser);
+            $templateUser->setTemplate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTemplateUser(TemplateUser $templateUser): static
+    {
+        if ($this->templateUsers->removeElement($templateUser)) {
+            // set the owning side to null (unless already changed)
+            if ($templateUser->getTemplate() === $this) {
+                $templateUser->setTemplate(null);
+            }
+        }
 
         return $this;
     }

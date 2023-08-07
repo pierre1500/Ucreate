@@ -6,6 +6,7 @@ use App\Entity\Component;
 use App\Entity\Project;
 use App\Entity\Section;
 use App\Entity\TemplateSite;
+use App\Entity\TemplateUser;
 use App\Form\TemplateFormType;
 use App\Repository\TemplateSiteRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +23,7 @@ class FormController extends AbstractController
     {
         $projet = new Project();
         $selectedTemplate = $templateSiteRepository->find($id);
-        $template = new TemplateSite();
+        $template = new TemplateUser();
         $section = new Section();
         $section2 = new Section();
         $section3 = new Section();
@@ -98,28 +99,27 @@ class FormController extends AbstractController
                 $newFilename5
             );
 
-            $id = (int)$id;
+            $template->setName($selectedTemplate->getName());
+            $template->setTemplate($selectedTemplate);
+            $manager->persist($template);
+            $manager->flush();
 
             $projet->setUser($this->getUser());
             $projet->setTemplate($selectedTemplate);
+            $projet->setTemplateUser($template);
             $projet->setState("Working");
             $manager->persist($projet);
             $manager->flush();
 
-            $template->setName($selectedTemplate->getName());
-            $template->setImage($selectedTemplate->getImage());
-            $manager->persist($template);
-            $manager->flush();
-
-            $section->setTemplate($selectedTemplate);
+            $section->setTemplateUser($template);
             $section->setOrderr(1);
             $section->setName("Section 1");
 
-            $section2->setTemplate($selectedTemplate);
+            $section2->setTemplateUser($template);
             $section2->setOrderr(2);
             $section2->setName("Section 2");
 
-            $section3->setTemplate($selectedTemplate);
+            $section3->setTemplateUser($template);
             $section3->setOrderr(3);
             $section3->setName("Section 3");
             $manager->persist($section);

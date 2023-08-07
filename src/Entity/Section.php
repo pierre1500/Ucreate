@@ -21,12 +21,11 @@ class Section
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'sections')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?TemplateSite $template = null;
-
     #[ORM\OneToMany(mappedBy: 'section_id', targetEntity: Component::class)]
     private Collection $components;
+
+    #[ORM\ManyToOne(inversedBy: 'section')]
+    private ?TemplateUser $templateUser = null;
 
     public function __construct()
     {
@@ -62,18 +61,6 @@ class Section
         return $this;
     }
 
-    public function getTemplate(): ?TemplateSite
-    {
-        return $this->template;
-    }
-
-    public function setTemplate(?TemplateSite $template): static
-    {
-        $this->template = $template;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Component>
      */
@@ -100,6 +87,18 @@ class Section
                 $component->setSection(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTemplateUser(): ?TemplateUser
+    {
+        return $this->templateUser;
+    }
+
+    public function setTemplateUser(?TemplateUser $templateUser): static
+    {
+        $this->templateUser = $templateUser;
 
         return $this;
     }
