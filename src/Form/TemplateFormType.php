@@ -103,7 +103,7 @@ class TemplateFormType extends AbstractType
                 ]
             ])
             ->add('Copyright', TextType::class, [
-                'label' => 'Copiright',
+                'label' => 'Copyright',
                 'attr' => [
                     'class' => 'form-control'
                 ]

@@ -193,7 +193,7 @@ class FormController extends AbstractController
             $component13->setValue($newFilename5);
 
             $component14->setSection($section3);
-            $component14->setReference("Copiryght");
+            $component14->setReference("Copyright");
             $component14->setType("text");
             $component14->setValue($copiryght);
 
