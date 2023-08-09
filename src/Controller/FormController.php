@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Component;
 use App\Entity\Project;
 use App\Entity\Section;
-use App\Entity\TemplateSite;
 use App\Entity\TemplateUser;
 use App\Form\TemplateFormType;
 use App\Repository\TemplateSiteRepository;
@@ -14,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class FormController extends AbstractController
 {
@@ -23,6 +21,7 @@ class FormController extends AbstractController
     {
         $projet = new Project();
         $selectedTemplate = $templateSiteRepository->find($id);
+
         $template = new TemplateUser();
         $section = new Section();
         $section2 = new Section();
@@ -41,7 +40,6 @@ class FormController extends AbstractController
         $component12 = new Component();
         $component13 = new Component();
         $component14 = new Component();
-
 
         $form = $this->createForm(TemplateFormType::class);
 
@@ -212,7 +210,9 @@ class FormController extends AbstractController
             $manager->persist($component13);
             $manager->persist($component14);
             $manager->flush();
-            $this->redirect('/');
+            return $this->redirectToRoute('project/index.html.twig', [
+                'id' => $projet->getId()
+            ]);
         }
 
         return $this->render("form/index.html.twig", [

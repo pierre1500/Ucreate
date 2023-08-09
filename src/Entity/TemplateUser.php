@@ -27,7 +27,6 @@ class TemplateUser
     #[ORM\ManyToOne(inversedBy: 'templateUsers')]
     private ?TemplateSite $template = null;
 
-
     public function __construct()
     {
         $this->section = new ArrayCollection();
