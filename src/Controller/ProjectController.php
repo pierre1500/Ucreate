@@ -31,7 +31,6 @@ class ProjectController extends AbstractController
         $project = $projectRepository->findOneBy(['id' => $id]);
         $id_template = $project->getTemplateUser();
         $template_name = $templateUserRepository->findOneBy(['id' => $id_template])->getName();
-
         $section = $sectionRepository->findOneBy(['templateUser' => $id_template, 'orderr' => 1]);
         $section2 = $sectionRepository->findOneBy(['templateUser' => $id_template, 'orderr' => 2]);
         $section3 = $sectionRepository->findOneBy(['templateUser' => $id_template, 'orderr' => 3]);
@@ -50,8 +49,7 @@ class ProjectController extends AbstractController
         $SousTitre2 = $componentRepository->findOneBy(['section' => $section3, 'reference' => 'Sous-titre2']);
         $Image2 = $componentRepository->findOneBy(['section' => $section3, 'reference' => 'image2']);
         $CopyRight = $componentRepository->findOneBy(['section' => $section3, 'reference' => 'CopyRight']);
-        return $this->render('template_var/'.$template_name.'/index.html.twig', [
-            'controller_name' => 'ProjectController',
+        return $this->render("template_var/{$template_name}/index.html.twig", [
             'logo' => $logo,
             'Titre' => $Titre,
             'SousTitre' => $SousTitre,

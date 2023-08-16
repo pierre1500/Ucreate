@@ -210,14 +210,13 @@ class FormController extends AbstractController
             $manager->persist($component13);
             $manager->persist($component14);
             $manager->flush();
-            return $this->redirectToRoute('project/index.html.twig', [
-                'id' => $projet->getId()
-            ]);
+            return $this->redirectToRoute('app_project');
         }
 
         return $this->render("form/index.html.twig", [
             'controller_name' => 'FormController',
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'id' => $projet->getId()
         ]);
     }
 }
