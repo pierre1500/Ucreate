@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Component;
 use App\Entity\Section;
 use App\Entity\TemplateUser;
+use App\Form\DomainFormType;
 use App\Form\TemplateFormType;
 use App\Repository\ComponentRepository;
 use App\Repository\ProjectRepository;
@@ -20,14 +21,30 @@ use Symfony\Component\HttpFoundation\File\File;
 
 class ProjectController extends AbstractController
 {
-    #[Route('/project', name: 'app_project')]
-    public function index(ProjectRepository $projectRepository): Response
+    #[Route('/project', name: 'app_project', methods: ['GET', 'POST'])]
+    public function index(ProjectRepository $projectRepository, EntityManagerInterface $manager,Request $request): Response
     {
+        $projectId = $request->request->get('project_id');
+        // récupère le domaine de via project with $id
+        $domain = $projectRepository->findOneBy(['id' => $projectId]);
+        $form = $this->createForm(DomainFormType::class, [
+         'domain' => $domain->get
+        ]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('domain')->getData() != $domain) {
+                $domain = $form->get('domain')->getData();
+                $manager->persist($domain);
+                $manager->flush();
+            }
+            return $this->redirectToRoute('app_project');
+        }
         $id = $this->getUser()->getId();
         $projects = $projectRepository->findBy(['user' => $id]);
         return $this->render('project/index.html.twig', [
             'controller_name' => 'ProjectController',
-            'projects' => $projects
+            'projects' => $projects,
+            'form' => $form->createView()
         ]);
     }
 
@@ -154,55 +171,55 @@ class ProjectController extends AbstractController
             $CopyRight->setValue($component['Copyright']);
 
             // Gestion des images
-            if ($component['logo'] != null) {
+            if ($form->get('logo')->getData()) {
                 $logo_file = $form->get('logo')->getData();
                 $uploadsDirectory = $this->getParameter('kernel.project_dir') . '/public/uploads_directory';
-                $newFilename = uniqid() . '.' . $logo->guessExtension();
-                $logo->move(
+                $newFilename = uniqid() . '.' . $logo_file->guessExtension();
+                $logo_file->move(
                     $uploadsDirectory,
                     $newFilename
                 );
-                $logo->setName($newFilename);
+                $logo->setValue($newFilename);
                 $manager->persist($logo);
             }
-            if ($component['Image_de_fond'] != null) {
+            if ($form->get('Image_de_fond')->getData()) {
                 $ImageDeFond_file = $form->get('Image_de_fond')->getData();
                 $uploadsDirectory = $this->getParameter('kernel.project_dir') . '/public/uploads_directory';
-                $newFilename = uniqid() . '.' . $ImageDeFond->guessExtension();
-                $ImageDeFond->move(
+                $newFilename = uniqid() . '.' . $ImageDeFond_file->guessExtension();
+                $ImageDeFond_file->move(
                     $uploadsDirectory,
                     $newFilename
                 );
                 $ImageDeFond->setValue($newFilename);
                 $manager->persist($ImageDeFond);
             }
-            if ($component['Image_de_la_deuxieme_section'] != null) {
+            if ($form->get('Image_de_la_deuxieme_section')->getData()) {
                 $Image_file = $form->get('Image_de_la_deuxieme_section')->getData();
                 $uploadsDirectory = $this->getParameter('kernel.project_dir') . '/public/uploads_directory';
-                $newFilename = uniqid() . '.' . $Image->guessExtension();
-                $Image->move(
+                $newFilename = uniqid() . '.' . $Image_file->guessExtension();
+                $Image_file->move(
                     $uploadsDirectory,
                     $newFilename
                 );
                 $Image->setValue($newFilename);
                 $manager->persist($Image);
             }
-            if ($component['Deuxieme_image_de_la_deuxieme_section'] != null) {
-                $Image1 = $form->get('Deuxieme_image_de_la_deuxieme_section')->getData();
+            if ($form->get('Deuxieme_image_de_la_deuxieme_section')->getData()) {
+                $Image1_file = $form->get('Deuxieme_image_de_la_deuxieme_section')->getData();
                 $uploadsDirectory = $this->getParameter('kernel.project_dir') . '/public/uploads_directory';
-                $newFilename = uniqid() . '.' . $Image1->guessExtension();
-                $Image1->move(
+                $newFilename = uniqid() . '.' . $Image1_file->guessExtension();
+                $Image1_file->move(
                     $uploadsDirectory,
                     $newFilename
                 );
                 $Image1->setValue($newFilename);
                 $manager->persist($Image1);
             }
-            if ($component['Troisieme_image_de_la_deuxieme_section'] != null) {
-                $Image2 = $form->get('Troisieme_image_de_la_deuxieme_section')->getData();
+            if ($form->get('Troisieme_image_de_la_deuxieme_section')->getData()) {
+                $Image2_file = $form->get('Troisieme_image_de_la_deuxieme_section')->getData();
                 $uploadsDirectory = $this->getParameter('kernel.project_dir') . '/public/uploads_directory';
-                $newFilename = uniqid() . '.' . $Image2->guessExtension();
-                $Image2->move(
+                $newFilename = uniqid() . '.' . $Image2_file->guessExtension();
+                $Image2_file->move(
                     $uploadsDirectory,
                     $newFilename
                 );
