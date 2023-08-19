@@ -79,10 +79,24 @@ class ProjectController extends AbstractController
     public function delete($id, ProjectRepository $projectRepository, EntityManagerInterface $manager): Response
     {
         $project = $projectRepository->findOneBy(['id' => $id]);
+        $template_user = $project->getTemplateUser();
+        $template = $manager->getRepository(TemplateUser::class)->findOneBy(['id' => $template_user]);
+        $sections = $manager->getRepository(Section::class)->findBy(['templateUser' => $template_user]);
+        foreach ($sections as $section) {
+            $components = $manager->getRepository(Component::class)->findBy(['section' => $section]);
+            foreach ($components as $component) {
+                $manager->remove($component);
+            }
+            $manager->remove($section);
+        }
+        $manager->remove($template);
         $manager->remove($project);
         $manager->flush();
+
         return $this->redirectToRoute('app_project');
     }
+
+
 
     #[Route('/project/{id}/edit', name: 'app_project_edit', methods: ['GET', 'POST'])]
     public function edit($id,ProjectRepository $projectRepository, Request $request, EntityManagerInterface $manager): Response
