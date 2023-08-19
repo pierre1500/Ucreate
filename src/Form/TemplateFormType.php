@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Component;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,7 +18,7 @@ class TemplateFormType extends AbstractType
             ->add('logo', FileType::class, [
                 'label' => 'Logo',
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control'
                 ]
@@ -37,7 +38,7 @@ class TemplateFormType extends AbstractType
             ->add('Image_de_fond', FileType::class, [
                 'label' => 'Image de fond',
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control'
                 ]
@@ -57,7 +58,7 @@ class TemplateFormType extends AbstractType
             ->add('Image_de_la_deuxieme_section', FileType::class, [
                 'label' => 'Image de la deuxième section',
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control'
                 ]
@@ -77,7 +78,7 @@ class TemplateFormType extends AbstractType
             ->add('Deuxieme_image_de_la_deuxieme_section', FileType::class, [
                 'label' => 'Deuxième image de la deuxième section',
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control'
                 ]
@@ -97,7 +98,7 @@ class TemplateFormType extends AbstractType
             ->add('Troisieme_image_de_la_deuxieme_section', FileType::class, [
                 'label' => 'Troisième image de la deuxième section',
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control'
                 ]
@@ -114,7 +115,6 @@ class TemplateFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-
         ]);
     }
 }

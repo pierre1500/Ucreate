@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -13,13 +13,13 @@
         <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="./css/styles.css" rel="stylesheet" />
+        <link href="{{ asset("css_template/styles.css") }}" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
             <div class="container px-5">
-                <img src="{{ asset('uploads_directory/' ~ logo) }}" alt="">
+                <img style="width: 200px; height: 40px;" src="{{ asset('uploads_directory/' ~ logo.value) }}" alt="">
                {# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
@@ -37,14 +37,14 @@
                     <h2 class="masthead-subheading mb-0">{{ SousTitre.value }}</h2>
                 </div>
             </div>
-            <img src="{{ asset('uploads_directory/' ~ ImageDeFond) }}" alt="image de fond">
+            <img src="{{ asset('uploads_directory/' ~ ImageDeFond.value) }}" alt="image de fond">
         </header>
         <!-- Content section 1-->
         <section id="scroll">
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6 order-lg-2">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="{{ asset('uploads_directory/' ~  Image) }}" alt="..." /></div>
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{{ asset('uploads_directory/' ~  Image.value) }}" alt="..." /></div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
@@ -60,12 +60,12 @@
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="{{ asset('uploads_directory/' ~ Image1) }}" alt="..." /></div>
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{{ asset('uploads_directory/' ~ Image1.value) }}" alt="..." /></div>
                     </div>
                     <div class="col-lg-6">
                         <div class="p-5">
-                            <h2 class="display-4">{{ Titre1 }}</h2>
-                            <p>{{ SousTitre1 }}</p>
+                            <h2 class="display-4">{{ Titre1.value }}</h2>
+                            <p>{{ SousTitre1.value }}</p>
                         </div>
                     </div>
                 </div>
@@ -76,12 +76,12 @@
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6 order-lg-2">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="{{ asset('uploads_directory/' ~ Image2) }}" alt="..." /></div>
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{{ asset('uploads_directory/' ~ Image2.value) }}" alt="..." /></div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
-                            <h2 class="display-4">{{ Titre2 }}</h2>
-                            <p>{{ SousTitre2 }}</p>
+                            <h2 class="display-4">{{ Titre2.value }}</h2>
+                            <p>{{ SousTitre2.value }}</p>
                         </div>
                     </div>
                 </div>

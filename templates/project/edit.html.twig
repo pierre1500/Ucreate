@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire de modification{% endblock %}
+
+{% block body %}
+
+
+    {{ form_start(form) }}
+    {{ form_row(form.logo) }}
+    {{ form_row(form.Titre) }}
+    {{ form_row(form.SousTitre) }}
+    {{ form_row(form.Image_de_fond) }}
+    {{ form_row(form.Titre_de_la_deuxieme_section) }}
+    {{ form_row(form.Sous_titre_de_la_deuxieme_section) }}
+    {{ form_row(form.Image_de_la_deuxieme_section) }}
+    {{ form_row(form.Deuxieme_titre_de_la_deuxieme_section) }}
+    {{ form_row(form.Deuxieme_sous_titre_de_la_deuxieme_section) }}
+    {{ form_row(form.Deuxieme_image_de_la_deuxieme_section) }}
+    {{ form_row(form.Troisieme_titre_de_la_deuxieme_section) }}
+    {{ form_row(form.Troisieme_sous_titre_de_la_deuxieme_section) }}
+    {{ form_row(form.Troisieme_image_de_la_deuxieme_section) }}
+    {{ form_row(form.Copyright) }}
+    <button type="submit" class="btn btn-success">Modifier</button>
+    {{ form_end(form) }}
+
+{% endblock %}
