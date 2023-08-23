@@ -16,7 +16,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\File\File;
 
 
 class ProjectController extends AbstractController
@@ -24,11 +23,11 @@ class ProjectController extends AbstractController
     #[Route('/project', name: 'app_project', methods: ['GET', 'POST'])]
     public function index(ProjectRepository $projectRepository, EntityManagerInterface $manager,Request $request): Response
     {
-        $projectId = $request->request->get('project_id');
+        /*$projectId = $request->request->get('project_id');
         // récupère le domaine de via project with $id
         $domain = $projectRepository->findOneBy(['id' => $projectId]);
         $form = $this->createForm(DomainFormType::class, [
-         'domain' => $domain->get
+         'domain' => $domain
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -38,13 +37,13 @@ class ProjectController extends AbstractController
                 $manager->flush();
             }
             return $this->redirectToRoute('app_project');
-        }
+        }*/
         $id = $this->getUser()->getId();
         $projects = $projectRepository->findBy(['user' => $id]);
         return $this->render('project/index.html.twig', [
             'controller_name' => 'ProjectController',
             'projects' => $projects,
-            'form' => $form->createView()
+
         ]);
     }
 
