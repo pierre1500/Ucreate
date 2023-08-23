@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Component;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,7 +17,7 @@ class TemplateFormType extends AbstractType
                 'mapped' => false,
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
                 ]
             ])
             ->add('Titre', TextType::class, [
@@ -31,16 +30,9 @@ class TemplateFormType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('Image_de_fond', FileType::class, [
-                'mapped' => false,
-                'required' => false,
-                'attr' => [
-                    'class' => 'custom-file-input'
-                ]
-            ])
             ->add('Titre_de_la_deuxieme_section', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control '
+                    'class' => 'form-control'
                 ]
             ])
             ->add('Sous_titre_de_la_deuxieme_section', TextType::class, [

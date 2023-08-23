@@ -29,7 +29,6 @@ class FormController extends AbstractController
         $component = new Component();
         $component2 = new Component();
         $component3 = new Component();
-        $component4 = new Component();
         $component5 = new Component();
         $component6 = new Component();
         $component7 = new Component();
@@ -49,7 +48,6 @@ class FormController extends AbstractController
             $logo = $form->get('logo')->getData();
             $titre = $data['Titre'];
             $sousTitre = $data['SousTitre'];
-            $imageDeFond = $form->get('Image_de_fond')->getData();
             $titreDeLaDeuxiemeSection = $data['Titre_de_la_deuxieme_section'];
             $sousTitreDeLaDeuxiemeSection = $data['Sous_titre_de_la_deuxieme_section'];
             $imageDeLaDeuxiemeSection = $form->get('Image_de_la_deuxieme_section')->getData();
@@ -67,13 +65,6 @@ class FormController extends AbstractController
             $logo->move(
                 $uploadsDirectory,
                 $newFilename
-            );
-
-            $newFilename2 = uniqid().'.'.$imageDeFond->guessExtension();
-
-            $imageDeFond->move(
-                $uploadsDirectory,
-                $newFilename2
             );
 
             $newFilename3 = uniqid().'.'.$imageDeLaDeuxiemeSection->guessExtension();
@@ -140,10 +131,6 @@ class FormController extends AbstractController
             $component3->setType("text");
             $component3->setValue($sousTitre);
 
-            $component4->setSection($section);
-            $component4->setReference("image_fond");
-            $component4->setType("image");
-            $component4->setValue($newFilename2);
 
             $component5->setSection($section2);
             $component5->setReference("Titre0");
@@ -198,7 +185,6 @@ class FormController extends AbstractController
             $manager->persist($component);
             $manager->persist($component2);
             $manager->persist($component3);
-            $manager->persist($component4);
             $manager->persist($component5);
             $manager->persist($component6);
             $manager->persist($component7);

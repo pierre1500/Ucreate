@@ -1,14 +1,30 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/template.css') }}">
+{% endblock %}
+
 {% block title %}Choix du Template{% endblock %}
 
 {% block body %}
-<h1>Choix du Template</h1>
-    <p>Choisissez le template que vous souhaitez utiliser pour votre site</p>
-    {% for template in templates %}
-        <img src="{{ asset('assets/image_site' ~ template.image) }}" alt="image du template">
-        <p>{{ template.name }}</p>
-        <a href="{{ path('app_template', {'id': template.id}) }}">Choisir ce template</a>
+    <div class="container">
+        <h1>Choix du Template</h1>
+        <p>Choisissez le template que vous souhaitez utiliser pour votre site</p>
+        {% for template in templates %}
         <br>
-    {% endfor %}
+            <div class="card-content">
+                <div class="content">
+                    <div class="imgBx">
+                        <img src="{{ asset('assets/image_site' ~ template.image) }}" alt="image du template">
+                    </div>
+                </div>
+                <ul class="sci">
+                    <li>
+                        <a href="{{ path('app_template', {'id': template.id}) }}">Visualiser</a>
+                    </li>
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}
