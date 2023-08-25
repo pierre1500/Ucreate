@@ -7,9 +7,10 @@
 {% block title %}Choix du Template{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Choix du Template</h1>
+    <div class="container mt-5 ">
+        <h1 class="text-white">Choix du Template</h1>
         <p>Choisissez le template que vous souhaitez utiliser pour votre site</p>
+        <div class="d-flex flex-row">
         {% for template in templates %}
         <br>
             <div class="card-content">
@@ -20,11 +21,12 @@
                 </div>
                 <ul class="sci">
                     <li>
-                        <a href="{{ path('app_template', {'id': template.id}) }}">Visualiser</a>
+                        <a href="{{ path('app_template', {'id': template.id}) }}">Choisir</a>
                     </li>
                 </ul>
             </div>
         {% endfor %}
+        </div>
     </div>
 
 {% endblock %}

@@ -34,6 +34,17 @@ class AppFixtures extends Fixture
         $template->setName('Template1');
         $template->setImage('/img.png');
         $manager->persist($template);
+
+        $template2 = new TemplateSite();
+        $template2->setName('Template2');
+        $template2->setImage('/img_1.png');
+        $manager->persist($template2);
+
+        $template3 = new TemplateSite();
+        $template3->setName('Template3');
+        $template3->setImage('/img_1.png');
+        $manager->persist($template3);
+
     /*
         $project = new Project();
         $project->setDomain('Domain du projet n°1');

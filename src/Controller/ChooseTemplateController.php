@@ -12,10 +12,11 @@ class ChooseTemplateController extends AbstractController
     #[Route('/template', name: 'app_choose_template')]
     public function index(TemplateSiteRepository $templateSiteRepository): Response
     {
-        ## Récupération de tous les templates
+        if(!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
         $templates = $templateSiteRepository->findAll();
         return $this->render('choose_template/index.html.twig', [
-            'controller_name' => 'ChooseTemplateController',
             'templates' => $templates
         ]);
     }
@@ -25,7 +26,6 @@ class ChooseTemplateController extends AbstractController
     {
         $template = $templateSiteRepository->find($id);
         return $this->render('choose_template/template.html.twig', [
-            'controller_name' => 'ChooseTemplateController',
             'template' => $template
         ]);
     }

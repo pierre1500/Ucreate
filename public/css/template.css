@@ -1,7 +1,7 @@
 .card-content {
     position: relative;
-    width: 300px;
-    height: 400px;
+    width: 350px;
+    height: 450px;
     margin: 10px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
@@ -10,7 +10,6 @@
     align-items: center;
     backdrop-filter: blur(10px);
 }
-
 .card-content .content {
     position: relative;
     display: flex;
@@ -26,7 +25,7 @@
 
 .card-content .content .imgBx {
     position: relative;
-    width: 250px;
+    width: 315px;
     height: 250px;
     overflow: hidden;
 }
