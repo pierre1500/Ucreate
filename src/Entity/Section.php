@@ -21,11 +21,14 @@ class Section
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'section_id', targetEntity: Component::class)]
+    #[ORM\OneToMany(mappedBy: 'sections', targetEntity: Component::class)]
     private Collection $components;
 
     #[ORM\ManyToOne(inversedBy: 'section')]
     private ?TemplateUser $templateUser = null;
+
+    #[ORM\ManyToOne(inversedBy: 'sections')]
+    private ?TemplateSite $templateSite = null;
 
     public function __construct()
     {

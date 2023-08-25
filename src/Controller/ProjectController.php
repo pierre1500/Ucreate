@@ -13,9 +13,11 @@ use App\Repository\SectionRepository;
 use App\Repository\TemplateUserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function Webmozart\Assert\Tests\StaticAnalysis\null;
 
 
 class ProjectController extends AbstractController
@@ -23,28 +25,25 @@ class ProjectController extends AbstractController
     #[Route('/project', name: 'app_project', methods: ['GET', 'POST'])]
     public function index(ProjectRepository $projectRepository, EntityManagerInterface $manager,Request $request): Response
     {
-        /*$projectId = $request->request->get('project_id');
-        // récupère le domaine de via project with $id
-        $domain = $projectRepository->findOneBy(['id' => $projectId]);
-        $form = $this->createForm(DomainFormType::class, [
-         'domain' => $domain
-        ]);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->get('domain')->getData() != $domain) {
-                $domain = $form->get('domain')->getData();
-                $manager->persist($domain);
-                $manager->flush();
-            }
-            return $this->redirectToRoute('app_project');
-        }*/
-        $id = $this->getUser()->getId();
-        $projects = $projectRepository->findBy(['user' => $id]);
-        return $this->render('project/index.html.twig', [
-            'controller_name' => 'ProjectController',
-            'projects' => $projects,
+        $projects = $projectRepository->findAll();
 
+        return $this->render('project/index.html.twig', [
+            'projects' => $projects,
         ]);
+    }
+
+    #[Route('/project/ajax/domain', name: 'app_project_ajax_domain', methods: ['POST'])]
+    public function ajaxDomain(ProjectRepository $projectRepository, EntityManagerInterface $manager, Request $request): JsonResponse
+    {
+        $jsonData = $request->getContent();
+        $data = json_decode($jsonData, true);
+        $project = $projectRepository->findOneBy(['id' => $data['projectId']]);
+        if ($project !== null) {
+            $project->setDomain($data['domain']);
+            $manager->flush();
+            return new JsonResponse(['success' => true]);
+        }
+        return new JsonResponse(['success' => false]);
     }
 
     #[Route('/project/{id}', name: 'app_project_show')]
@@ -140,21 +139,21 @@ class ProjectController extends AbstractController
         $CopyRight = $manager->getRepository(Component::class)->findOneBy(['section' => $section3, 'reference' => 'CopyRight']);
 
         $form = $this->createForm(TemplateFormType::class, [
-            'logo' => $logo,
-            'Titre' => $Titre->getValue(),
-            'SousTitre' => $SousTitre->getValue(),
-            'Image_de_fond' => $ImageDeFond,
-            'Titre_de_la_deuxieme_section' => $Titre0->getValue(),
-            'Sous_titre_de_la_deuxieme_section' => $SousTitre0->getValue(),
-            'Image_de_la_deuxieme_section' => $Image,
-            'Deuxieme_titre_de_la_deuxieme_section' => $Titre1->getValue(),
-            'Deuxieme_sous_titre_de_la_deuxieme_section' => $SousTitre1->getValue(),
-            'Deuxieme_image_de_la_deuxieme_section' => $Image1,
-            'Troisieme_titre_de_la_deuxieme_section' => $Titre2->getValue(),
-            'Troisieme_sous_titre_de_la_deuxieme_section' => $SousTitre2->getValue(),
-            'Troisieme_image_de_la_deuxieme_section' => $Image2,
+                'logo' => $logo,
+                'Titre' => $Titre->getValue(),
+                'SousTitre' => $SousTitre->getValue(),
+                'Image_de_fond' => $ImageDeFond,
+                'Titre_de_la_deuxieme_section' => $Titre0->getValue(),
+                'Sous_titre_de_la_deuxieme_section' => $SousTitre0->getValue(),
+                'Image_de_la_deuxieme_section' => $Image,
+                'Deuxieme_titre_de_la_deuxieme_section' => $Titre1->getValue(),
+                'Deuxieme_sous_titre_de_la_deuxieme_section' => $SousTitre1->getValue(),
+                'Deuxieme_image_de_la_deuxieme_section' => $Image1,
+                'Troisieme_titre_de_la_deuxieme_section' => $Titre2->getValue(),
+                'Troisieme_sous_titre_de_la_deuxieme_section' => $SousTitre2->getValue(),
+                'Troisieme_image_de_la_deuxieme_section' => $Image2,
                 'Copyright' => $CopyRight->getValue(),
-        ]
+            ]
         );
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -250,4 +249,29 @@ class ProjectController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+
+//$projectId = $request->request->get('project_id');
+//    // récupère le domaine de via project with $id
+//$domain = $projectRepository->findOneBy(['id' => $projectId]);
+//$form = $this->createForm(DomainFormType::class, [
+//'domain' => $domain
+//]);
+//$form->handleRequest($request);
+//if ($form->isSubmitted() && $form->isValid()) {
+//if ($form->get('domain')->getData() != $domain) {
+//
+//$domain->setDomain($form->get('domain')->getData());
+//$manager->persist($domain);
+//$manager->flush();
+//}
+//return $this->redirectToRoute('app_project');
+//}
+//$id = $this->getUser()->getId();
+//$projects = $projectRepository->findBy(['user' => $id]);
+//return $this->render('project/index.html.twig', [
+//    'controller_name' => 'ProjectController',
+//    'projects' => $projects,
+//    'form' => $form->createView(),
+//]);
 }

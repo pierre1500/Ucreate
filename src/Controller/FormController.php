@@ -19,6 +19,9 @@ class FormController extends AbstractController
     #[Route('/form/{id}', name: 'app_form')]
     public function index(Request $request,EntityManagerInterface $manager, $id,TemplateSiteRepository $templateSiteRepository): Response
     {
+        if  ($this->getUser() == null) {
+            return $this->redirectToRoute('app_login');
+        }
         $projet = new Project();
         $selectedTemplate = $templateSiteRepository->find($id);
 

@@ -18,10 +18,10 @@ class TemplateSite
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'template_id', targetEntity: Project::class)]
+    #[ORM\OneToMany(mappedBy: 'template', targetEntity: Project::class)]
     private Collection $projects;
 
-    #[ORM\OneToMany(mappedBy: 'template_id', targetEntity: Section::class)]
+    #[ORM\OneToMany(mappedBy: 'templateSite', targetEntity: Section::class)]
     private Collection $sections;
 
     #[ORM\Column(length: 255)]
