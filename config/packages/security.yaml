@@ -27,7 +27,8 @@ security:
                 check_path: security.login
             logout:
                 path: 'app_logout'
-            custom_authenticator: App\Security\UsersAuthenticator
+            custom_authenticator:
+                - App\Security\UsersAuthenticator
 
             remember_me:
                 secret: '%kernel.secret%'

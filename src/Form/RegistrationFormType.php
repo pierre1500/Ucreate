@@ -21,7 +21,8 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'placeholder' => 'e-mail'
                 ],
                 'constraints' => [
                     new Regex(
@@ -29,45 +30,41 @@ class RegistrationFormType extends AbstractType
                         'Veuillez rentrer une addresse e-mail, Enfinnnn !'
                     )
                 ],
-                'label' => 'E-mail'
+                'label' => false
             ])
             ->add('lastname', TextType::class,[
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'placeholder' => 'nom'
                 ],
-                'label' => 'Nom'
+                'empty_data' => 'Nom',
+                'label' => false
             ])
             ->add('name', TextType::class,[
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'placeholder' => 'prénom'
                 ],
-                'label' => 'Prénom'
-            ])
-            ->add('RGPD', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'veuillez accepter les termes de la  rgpd',
-                    ]),
-                ],
-                'label' => 'En acceptant les termes, vous acceptez les termes de la RGPD'
+                'empty_data' => 'Prénom',
+                'label' => false
             ])
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'placeholder' => 'mot de passe'
                 ],
-                'label' => "mot de passe",
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuilez renseigner un mot de passe',
                     ]),
-//                    new Regex(
-//                        '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/',
-//                        'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre'
-//                    ),
+                   /* new Regex(
+                        '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/',
+                        'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre'
+                    ),*/
                 ],
+                'label' => false
 
             ])
         ;

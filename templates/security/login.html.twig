@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/login.css')}}">
+{% endblock %}
 
-{% block title %}Log in!{% endblock %}
+
+{% block title %}Authentification{% endblock %}
 
 {% block body %}
-<form method="post">
+{#<form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -28,4 +32,84 @@
         Sign in
     </button>
 </form>
+
+
+    <h1>Register</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.email) }}
+    {{ form_row(registrationForm.lastname) }}
+    {{ form_row(registrationForm.name) }}
+    {{ form_row(registrationForm.RGPD) }}
+    {{ form_row(registrationForm.plainPassword) }}
+
+    <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}#}
+
+
+    <div class="container mt-5 body" id="container">
+        <div class="form-container sign-up-container">
+            {{ form_errors(registrationForm) }}
+            {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.lastname) }}
+                    {{ form_row(registrationForm.name) }}
+                    {{ form_row(registrationForm.plainPassword) }}
+            <input type="hidden" name="_csrf_token_register"
+                   value="{{ csrf_token('authenticate') }}"
+            >
+            <button type="submit" class="sign-up-button" name="register_submit">S'inscrire</button>
+            {{ form_end(registrationForm) }}
+
+        </div>
+        <div class="form-container sign-in-container">
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+                <h1>Se connecter</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your account</span>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus placeholder="email">
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="mot de passe" autocomplete="current-password" required>
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+                <button type="submit" class="mt-3" name="login_submit">Se connecter</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h2>De retour !</h2>
+                    <p>Si vous avez déjà un compte, veuillez cliquer sur le bouton juste ene dessous </p>
+                    <button class="ghost" id="signIn">Se connecter</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h2>Nouveau par ici ?</h2>
+                    <p>Viens te créer un nouveau compte en cliquant sur le bouton </p>
+                    <button class="ghost" id="signUp">S'inscrire</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
 {% endblock %}
