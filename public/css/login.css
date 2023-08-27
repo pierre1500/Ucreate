@@ -2,12 +2,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 170px;
 }
 
 h1 {
     font-weight: bold;
     margin: 0;
     text-transform: lowercase !important;
+    color: #fff;
+}
+h2{
+    color: #fff;
 }
 
 p {
@@ -16,6 +21,7 @@ p {
     line-height: 20px;
     letter-spacing: 1px;
     margin: 20px 0 30px;
+    color: #fff;
 }
 
 span {
@@ -29,7 +35,8 @@ a {
 }
 
 .container {
-    background: #fff;
+    /*background: #fff;*/
+    background: #000000;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, .2), 0 10px 10px rgba(0, 0, 0, .2);
     position: relative;
@@ -40,7 +47,8 @@ a {
 }
 
 .form-container form {
-    background: #fff;
+    background: #000000;
+    /*background: #fff;*/
     display: flex;
     flex-direction: column;
     padding:  0 50px;
@@ -68,9 +76,7 @@ a {
 .form-container input {
     background: #eee;
     border: none;
-    padding: 12px 15px;
     margin: 8px 0;
-    width: 100%;
 }
 
 button {
@@ -131,8 +137,10 @@ button.ghost {
 }
 
 .overlay {
-    background: #ff416c;
-    background: linear-gradient(to right, #F0AD4E, #ff416c) no-repeat 0 0 / cover;
+    /*background: #ff416c;*/
+    /*background: linear-gradient(to right, #F0AD4E, #ff416c) no-repeat 0 0 / cover;*/
+    background: #000000;
+
     color: #000000;
     position: relative;
     left: -100%;
@@ -141,7 +149,16 @@ button.ghost {
     transform: translateY(0);
     transition: transform .6s ease-in-out;
 }
+hr{
+    border: 1px solid #F0AD4E;
+    width: 120%;
+    margin: 20px auto;
+    position:absolute;
+    top: 2px;
+    z-index: 999;
+    transform: rotate(90deg);
 
+}
 .overlay-panel {
     position: absolute;
     top: 0;
