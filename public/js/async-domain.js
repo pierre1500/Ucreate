@@ -16,7 +16,7 @@ function initSubmitButtons() {
                     .then(data => {
                         let message = 'Something went wrong...!';
                         if (data.success) {
-                            message = 'All good muh frend...!';
+                            message = 'All good my friend...!';
                         }
                         alert(message);
                     });

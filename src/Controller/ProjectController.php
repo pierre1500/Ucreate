@@ -25,7 +25,7 @@ class ProjectController extends AbstractController
     #[Route('/project', name: 'app_project', methods: ['GET', 'POST'])]
     public function index(ProjectRepository $projectRepository, EntityManagerInterface $manager,Request $request): Response
     {
-        $projects = $projectRepository->findAll();
+        $projects = $projectRepository->findBy(['user' => $this->getUser()->getId()]);
 
         return $this->render('project/index.html.twig', [
             'projects' => $projects,
