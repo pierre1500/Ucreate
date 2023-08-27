@@ -1,3 +1,8 @@
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset("css/template1.css") }}">
+{% endblock stylesheets %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -38,8 +43,8 @@
         <section id="scroll">
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
-                    <div class="col-lg-6 order-lg-2">
-                        <div class="p-5 rounded-circle text-bg-secondary"> {{ form_row(form.Image_de_la_deuxieme_section)}} </div>
+                    <div class="col-lg-6 order-lg-2 mt-3 d-flex justify-content-center">
+                        <div class="p-5 circleImg text-bg-secondary"> {{ form_row(form.Image_de_la_deuxieme_section)}} </div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
@@ -53,8 +58,8 @@
         <section>
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
-                    <div class="col-lg-6">
-                        <div class="p-5 rounded-circle text-bg-secondary">{{ form_row(form.Deuxieme_image_de_la_deuxieme_section) }}</div>
+                    <div class="col-lg-6 d-flex justify-content-center">
+                        <div class="p-5 circleImg text-bg-secondary">{{ form_row(form.Deuxieme_image_de_la_deuxieme_section) }}</div>
                     </div>
                     <div class="col-lg-6">
                         <div class="p-5">
@@ -66,10 +71,10 @@
             </div>
         </section>
         <section>
-            <div class="container px-5">
+            <div class="container px-5 mb-5">
                 <div class="row gx-5 align-items-center">
-                    <div class="col-lg-6 order-lg-2">
-                        <div class="p-5 rounded-circle text-bg-secondary">{{ form_row(form.Troisieme_image_de_la_deuxieme_section) }}</div>
+                    <div class="col-lg-6 order-lg-2 d-flex justify-content-center">
+                        <div class="p-5 circleImg text-bg-secondary">{{ form_row(form.Troisieme_image_de_la_deuxieme_section) }}</div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">

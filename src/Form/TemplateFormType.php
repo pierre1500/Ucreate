@@ -18,73 +18,89 @@ class TemplateFormType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control',
-                ]
+                ],
+                'label' => false
             ])
             ->add('Titre', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'label' => false
             ])
             ->add('SousTitre', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'label' => false
             ])
             ->add('Titre_de_la_deuxieme_section', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'label' => false
             ])
             ->add('Sous_titre_de_la_deuxieme_section', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'label' => false
             ])
             ->add('Image_de_la_deuxieme_section', FileType::class, [
                 'mapped' => false,
                 'required' => false,
                 'attr' => [
-                    'class' => 'custom-file-input'
-                ]
+                    'class' => 'custom-file-input', // Ajoutez des classes CSS personnalisées si nécessaire
+                ],
+                'label_attr' => [
+                    'class' => 'custom-file-label', // Classe pour le label (peut être personnalisée)
+                ],
+                'label' => false
             ])
             ->add('Deuxieme_titre_de_la_deuxieme_section', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'label' => false
             ])
             ->add('Deuxieme_sous_titre_de_la_deuxieme_section', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'label' => false
             ])
             ->add('Deuxieme_image_de_la_deuxieme_section', FileType::class, [
                 'mapped' => false,
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'class' => 'custom-file-input'
+                ],
+                'label' => false
             ])
             ->add('Troisieme_titre_de_la_deuxieme_section', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'label' => false
             ])
             ->add('Troisieme_sous_titre_de_la_deuxieme_section', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'label' => false
             ])
             ->add('Troisieme_image_de_la_deuxieme_section', FileType::class, [
                 'mapped' => false,
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'class' => 'custom-file-input'
+                ],
+                'label' => false
             ])
             ->add('Copyright', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
-                ]
+                ],
+                'label' => false
             ])
         ;
     }

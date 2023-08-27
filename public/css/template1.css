@@ -1,0 +1,27 @@
+.custom-file-input::-webkit-file-upload-button {
+    display: none;
+}
+
+.custom-file-input::before {
+    content: 'Parcourir'; /* Texte du bouton personnalisé */
+    display: inline-block;
+    color: white; /* Couleur du texte du bouton */
+    border: 1px solid #007bff; /* Bordure du bouton */
+    padding: 5px 10px; /* Espacement interne du bouton */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer;
+    width: 50%;
+}
+
+/* Masquer le texte de placeholder par défaut */
+.custom-file-input::after {
+    content: none;
+}
+.circleImg{
+    width: 380px;
+    height: 353px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
