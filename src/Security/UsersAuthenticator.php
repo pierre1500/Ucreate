@@ -77,11 +77,9 @@ class UsersAuthenticator extends AbstractLoginFormAuthenticator
             $user->setRoles(['ROLE_USER']);
             $user->setPassword($hashedPassword);
 
-            // Persist the user to the database (pseudo-code, replace with actual logic)
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
-            // Create a new Passport for successful registration
             return new Passport(
                 new UserBadge(
                     $email,
@@ -89,7 +87,7 @@ class UsersAuthenticator extends AbstractLoginFormAuthenticator
                         return $this->userProvider->loadUserByIdentifier($email);
                     }
                 ),
-                new PasswordCredentials($password), // or $hashedPassword if needed
+                new PasswordCredentials($password),
                 [
                     new CsrfTokenBadge('authenticate', $submittedData['_csrf_token_register']),
                     new RememberMeBadge(),
