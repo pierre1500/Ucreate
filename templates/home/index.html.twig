@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
@@ -7,37 +10,32 @@
     <section class="">
   <div class="d-flex flex-column align-items-center text-center p-5">
   
-    <div class="card justify-content-center border-warning d-flex align-items-center w-75 mb-5">
+    <div class="card justify-content-center border-warning d-flex align-items-center w-50 mb-5">
     <img src="{{ asset('assets/images/ordi.jpg') }}" class="card-img-top" alt="...">
     <div class="card-body text-center" style="background-color:#000000">
       <h5 class="card-title text-white">Créer un site qui vous ressemble</h5>
-      <p class="card-text text-white">
+      <p class="card-text text-justify text-white">
         Ucreate permet à tous de créer un site internet gratuit ou professionnel, de créer une boutique en ligne, 
         de créer un blog ou les 3 à la fois. Les possibilités sont infinies, à vous de choisir ! C'est un logiciel de 
         création de site web en ligne sans connaissances techniques. Vous êtes débutant ? Ucreate est fait pour vous, 
         alors, lancez-vous !</p>
-      <a href="{{ path('app_choose_template') }}" class="btn btn-warning">Générer mon site</a>
+      <a href="{{ path('app_choose_template') }}" class="btn btn-warning">Commencer</a>
     </div>
   </div>
 
-  <div class="card border-warning mb-5 w-75" style="width: 18rem;">
-    <img src="{{ asset('assets/images/ordi.jpg') }}" class="card-img-top" alt="...">
+  <div class="card border-warning mb-5 w-50" style="width: 18rem;">
+    <img src="{{ asset('assets/images/template.png') }}" class="card-img-top " alt="...">
     <div class="card-body text-center" style="background-color:#000000">
-      <h5 class="card-title text-white">Card title</h5>
-      <p class="card-text text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-warning">Go somewhere</a>
+      <h5 class="card-title text-white">Votre site web en 3 étapes</h5>
+        <div class="text-todo">
+          <p class="card-text text-white"> <span> 1 </span> Choisissez le template qui qui vous fais rêver</p>
+          <p class="card-text text-white"> <span> 2 </span> Ajoutez vos textes et vos images au bon endroit</p>
+          <p class="card-text text-white"> <span> 3 </span> Publier votre site sur le web sans aucun effort</p>
+        </div>
+      <p class="card-text text-white">Créer un site internet gratuit n'a jamais été aussi simple !</p>
+      <a href="#" class="btn btn-warning">Créer mon site</a>
     </div>
   </div>
-
-  <div class="card border-warning mb-5 w-75" style="width: 18rem;">
-    <img src="{{ asset('assets/images/ordi.jpg') }}" class="card-img-top" alt="...">
-    <div class="card-body text-center" style="background-color:#000000">
-      <h5 class="card-title text-white">Card title</h5>
-      <p class="card-text text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-warning">Go somewhere</a>
-    </div>
-  </div>
-
 
 </div>
 

@@ -1,0 +1,30 @@
+span{
+    display: inline-block;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.2rem;
+    margin: 0.2rem auto auto auto;
+    border:2px solid #F0AD4E;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    width: 10%;
+
+}
+
+.text-todo{
+    display: flex;
+    flex-direction: column;
+}
+
+.text-todo p{
+    display: flex;
+    margin: 0;
+    gap: 0.5rem;
+    align-items: center;
+    width: 12rem;
+    font-size: 0.8rem;
+}
+
+.card-text{
+    text-justify: ;
+}
