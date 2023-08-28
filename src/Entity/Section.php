@@ -105,4 +105,16 @@ class Section
 
         return $this;
     }
+
+    public function getTemplateSite(): ?TemplateSite
+    {
+        return $this->templateSite;
+    }
+
+    public function setTemplateSite(?TemplateSite $templateSite): static
+    {
+        $this->templateSite = $templateSite;
+
+        return $this;
+    }
 }
