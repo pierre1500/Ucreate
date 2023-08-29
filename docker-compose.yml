@@ -15,15 +15,12 @@ services:
     networks:
       - ucreate_network
 
+
   php-fpm:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: php-fpm
-    volumes:
-      - ./:/var/www/symfony:rw
-    ports:
-      - "9155:9155"
     networks:
       - ucreate_network
 
