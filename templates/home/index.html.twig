@@ -7,7 +7,7 @@
 
 {% block body %}
 
-    <section class="">
+    {# <section class="">
   <div class="d-flex flex-column align-items-center text-center p-5">
   
     <div class="card justify-content-center border-warning d-flex align-items-center w-50 mb-5">
@@ -26,9 +26,9 @@
   <div class="card border-warning mb-5 w-50" style="width: 18rem;">
     <img src="{{ asset('assets/images/template.png') }}" class="card-img-top " alt="...">
     <div class="card-body text-center" style="background-color:#000000">
-      <h5 class="card-title text-white">Votre site web en 3 étapes</h5>
+      <h5 class="card-title text-white mb-3">Votre site web en 3 étapes</h5>
         <div class="text-todo">
-          <p class="card-text text-white"> <span> 1 </span> Choisissez le template qui qui vous fais rêver</p>
+         <span> 1 </span> <p class="card-text text-white">  Choisissez le template qui qui vous fais rêver</p>
           <p class="card-text text-white"> <span> 2 </span> Ajoutez vos textes et vos images au bon endroit</p>
           <p class="card-text text-white"> <span> 3 </span> Publier votre site sur le web sans aucun effort</p>
         </div>
@@ -39,5 +39,31 @@
 
 </div>
 
+</section> #}
+
+<section>
+    <img src="https://drive.google.com/uc?export=view&id=1nHl2PZEhjGl18XyZYWnWloFciszXvpXh" id="stars">
+    <img src="https://drive.google.com/uc?export=view&id=11ywlLc0-vbBwuKFVfTX7stDFih0TBiJG" id="moon">
+    <img src="https://drive.google.com/uc?export=view&id=1A8KUta55RJbL-47_J1_J8L2EVJnzWUJv" id="mountains_behind">
+    <h2 id="text">Ucreate</h2>
+    <a href="#sec" id="btn">Explorer</a>
+    <img src="https://drive.google.com/uc?export=view&id=1sc056mKgpKjv7rBiop8QbPPtF7b8pwtu" id="mountains_front">
 </section>
+
+<div class="sec" id="sec">
+    <h2>La création de site web</h2>
+    <p class="text-justify text-white">
+        Ucreate permet à tous de créer un site internet gratuit ou professionnel, de créer une boutique en ligne, 
+        de créer un blog ou les 3 à la fois. Les possibilités sont infinies, à vous de choisir. C'est un logiciel de 
+        création de site web en ligne sans connaissances techniques. Vous êtes débutant ? Ucreate est fait pour vous, 
+        alors, lancez-vous !</p>
+        <h5 class="card-title text-white mb-3">Votre site web en 3 étapes</h5>
+        <div class="text-todo">
+          <p class="card-text text-white"> <span> 1 </span> Choisissez le template qui qui vous fais rêver</p>
+          <p class="card-text text-white"> <span> 2 </span> Ajoutez vos textes et vos images au bon endroit</p>
+          <p class="card-text text-white"> <span> 3 </span> Publier votre site sur le web sans aucun effort</p>
+          <p class="card-text text-white">Créer un site internet gratuit n'a jamais été aussi simple !</p>
+        </div>
+      <a href="{{ path('app_choose_template') }}" class="btn">Commencer</a>
+</div>
 {% endblock %}
