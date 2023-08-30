@@ -23,12 +23,20 @@
 
 .navbar {
     background-color: transparent !important;
+    position: absolute;
+    z-index: 1000000;
+    width: 100% !important;
+    margin: 0 2rem;
 }
 
 body {
     min-height: 100vh;
-    background: linear-gradient(#2b1055, #7597de);
+    width: 100vw !important;
     overflow-x: hidden;
+    background-color: #1C0522 !important;
+}
+.header-animation {
+    background-color: black;
 }
 header {  
     position: absolute;
@@ -135,9 +143,16 @@ section img#mountains_front {
     transform: translateY(100px);
 }
 
+#btn:hover {
+    background-color: #FFCF5E;
+    cursor: pointer;
+    color: #1C0522;
+    border: 0.2rem solid #FFCF5E ;
+}
+
 .sec {
     position: relative;
-    padding: 100px;
+    padding: 3rem 6rem 2rem 6rem;
     background: #1c0522;
 }
 
@@ -150,4 +165,65 @@ section img#mountains_front {
 .sec p {
     font-size: 1em;
     color: #fff;
+}
+
+.contenu {
+    background-color: #1C0522;
+}
+
+.content {
+    background-color: #1C0522;
+    margin-bottom: 0 !important;
+}
+
+.box {
+    background-color: #1C0522;
+}
+
+hr {
+
+
+}
+.images {
+    height: 15rem;
+    width: fit-content;
+}
+.card-images {
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 40px;
+    background: transparent;
+    color: white;
+    font-size: 1em;
+    z-index: 9;
+    border: 0.2rem solid white;
+}
+.btn:hover {
+    background-color: #FFCF5E;
+    cursor: pointer;
+    color: #1C0522;
+    border: 0.2rem solid #FFCF5E ;
+}
+h4{
+    position: relative;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h4:before{
+    content: '';
+    position: absolute;
+    width: 20%;
+    border: 1px solid #FFCF5E;
+    bottom: -15px;
+    left: 40%;
 }
