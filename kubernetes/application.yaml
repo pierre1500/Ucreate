@@ -1,0 +1,193 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+type: Opaque
+data:
+  username: a2FsaQ==
+  password: a2FsaQ==
+  root-password: a2FsaQ==
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-persistent-storage-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: default
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sf-pv-claim-content
+  labels:
+    app: symfony
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: default
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: symfony-mysql
+  labels:
+    app: symfony
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: symfony
+      tier: mysql
+  template:
+    metadata:
+      labels:
+        app: symfony
+        tier: mysql
+    spec:
+      containers:
+        - image: mysql:5.6
+          name: mysql
+          resources:
+            limits:
+              cpu: "500m"
+              memory: 1Gi
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: root-password
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: username
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
+            - name: MYSQL_DATABASE
+              value: wordpress
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-persistent-storage-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: symfony-mysql
+  labels:
+    app: symfony
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: symfony
+    tier: mysql
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: symfony-nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: symfony-nginx
+  template:
+    metadata:
+      labels:
+        app: symfony-nginx
+    spec:
+      containers:
+        - name: nginx
+          image: pierre1500/ucreate_nginx
+          ports:
+            - containerPort: 8080
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-config
+        - name: symfony-files
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: symfony-nginx-service
+spec:
+  selector:
+    app: symfony-nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9000
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-fpm-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php-fpm
+  template:
+    metadata:
+      labels:
+        app: php-fpm
+    spec:
+      containers:
+        - name: php-fpm
+          image: pierre1500/php-fpm
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-fpm
+spec:
+    selector:
+        app: php-fpm
+    ports:
+      - protocol: TCP
+        port: 9000
+        targetPort: 9000
+    type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: symfony-phpmyadmin-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: symfony-phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: symfony-phpmyadmin
+    spec:
+      containers:
+        - name: phpmyadmin
+          image: phpmyadmin/phpmyadmin
+---
